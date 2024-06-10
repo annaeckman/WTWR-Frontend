@@ -6,8 +6,8 @@ function Header() {
   return (
     <header className="header">
       <img src={logo} alt="wtwr logo" className="header__logo" />
-      <p className="header__date-and-location">DATE, LOCATION</p>
-      <button className="header__add-btn">+ Add Clothes</button>
+      <p className="header__date-and-location">June 15, New York</p>
+      <button className="header__add-btn">+ Add clothes</button>
       <div className="header__user-container">
         <p className="header__user-name">Terrance Tegegne</p>
         <img
