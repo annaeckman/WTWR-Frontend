@@ -10,8 +10,9 @@
 
 .cards__list {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  gap: 21px;
+  gap: 19px;
   list-style-type: none;
   margin-top: 35px;
   padding: 0;
