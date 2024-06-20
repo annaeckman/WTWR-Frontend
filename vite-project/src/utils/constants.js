@@ -11,7 +11,7 @@ export const weatherOptions = [
   },
   {
     day: true,
-    condition: "clowdy",
+    condition: "cloudy",
     url: new URL("../images/day/clowdy.svg", import.meta.url).href,
   },
   {
@@ -21,7 +21,7 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "clowdy",
+    condition: "cloudy",
     url: new URL("../images/day/night-clowdy.svg", import.meta.url).href,
   },
 ];
