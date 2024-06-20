@@ -54,7 +54,7 @@ function App() {
         <label htmlFor="name" className="modal__label">
           Name{" "}
           <input
-            placeholder="name"
+            placeholder="Name"
             id="name"
             type="text"
             className="modal__input"
@@ -63,7 +63,7 @@ function App() {
         <label htmlFor="imageUrl" className="modal__label">
           Image{" "}
           <input
-            placeholder="image URL"
+            placeholder="Image URL"
             id="imageUrl"
             type="url"
             className="modal__input"
