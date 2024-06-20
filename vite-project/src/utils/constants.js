@@ -1,3 +1,31 @@
+export const weatherOptions = [
+  {
+    day: true,
+    condition: "clear",
+    url: new URL("../images/day/clear.svg", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "overcast",
+    url: new URL("../images/day/overcast.svg", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "clowdy",
+    url: new URL("../images/day/clowdy.svg", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "clear",
+    url: new URL("../images/day/night-clear.svg", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "clowdy",
+    url: new URL("../images/day/night-clowdy.svg", import.meta.url).href,
+  },
+];
+
 export const defaultClothingItems = [
   {
     _id: 0,
