@@ -22,10 +22,10 @@
   max-width: 496px;
   box-sizing: border-box;
   width: 100%;
-  font-family: "CabinetGrotesk-Bold";
+  /* font-family: "CabinetGrotesk-Medium";
   font-size: 16px;
   line-height: 20px;
-  font-weight: 700;
+  font-weight: 700; */
 }
 
 .modal__title {
@@ -54,6 +54,10 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
 }
 
 .modal__label {
