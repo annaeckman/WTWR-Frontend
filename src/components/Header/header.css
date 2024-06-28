@@ -2,12 +2,24 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   padding: 32px 0 28px;
   font-family: "CabinetGrotesk-Bold";
   font-size: 20px;
   line-height: 1.2;
   font-weight: 700;
   background-color: #f3f3f3;
+}
+
+.header__logo-and-date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__temp-and-user {
+  display: flex;
+  flex-direction: row;
 }
 
 .header__logo {
