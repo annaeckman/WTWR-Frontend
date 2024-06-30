@@ -1,19 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import ModalWithForm from "../components/ModalWithForm/ModalWithForm";
 
-const AddItemModal = (closeActiveModal, onAddItem, isOpen) => {
+const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
+  const [name, setName] = useState("");
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const [link, setUrl] = useState("");
+  const handleUrlChange = (e) => {
+    setUrl(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAddItem({ name, link });
+  };
+
   return (
     <ModalWithForm
       title="new garment"
       buttonText="Add garment"
       isOpen={isOpen}
-      onClose={closeActiveModal}
-      onSubmit={onAddItem}
+      onClose={handleCloseModal}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
         <input
           placeholder="Name"
+          value={name}
+          onChange={handleNameChange}
           id="name"
           type="text"
           className="modal__input"
@@ -25,6 +42,8 @@ const AddItemModal = (closeActiveModal, onAddItem, isOpen) => {
         Image{" "}
         <input
           placeholder="Image URL"
+          value={link}
+          onChange={handleUrlChange}
           id="imageUrl"
           type="url"
           className="modal__input"
@@ -39,7 +58,9 @@ const AddItemModal = (closeActiveModal, onAddItem, isOpen) => {
           <input
             name="radio"
             id="hot"
+            value="hot"
             type="radio"
+            // onChange={handleRadioChange}
             className="modal__radio-input"
           />
           Hot
