@@ -7,7 +7,6 @@ import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
@@ -35,7 +34,9 @@ function App() {
     //first add item to the server, then to the dom
     return addItem(values)
       .then((item) => {
-        setClothingItems([item, ...clothingItems]);
+        console.log(values);
+        console.log(item);
+        setClothingItems([{ ...values, _id: item.id }, ...clothingItems]);
         closeActiveModal();
       })
       .catch(console.error);
@@ -59,7 +60,6 @@ function App() {
   };
 
   const closeActiveModal = () => {
-    console.log("closeActiveModal function fired");
     setActiveModal("");
   };
 
@@ -81,6 +81,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
+        console.log(data);
         setClothingItems(data);
       })
       .catch(console.error);
