@@ -78,7 +78,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
         <label htmlFor="cold" className="modal__label_type_radio">
           <input
             name="weather"
-            value="warm"
+            value="cold"
             id="cold"
             type="radio"
             className="modal__radio-input"

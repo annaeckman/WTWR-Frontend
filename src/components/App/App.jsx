@@ -36,7 +36,7 @@ function App() {
       .then((item) => {
         console.log(values);
         console.log(item);
-        setClothingItems([{ ...values, _id: item.id }, ...clothingItems]);
+        setClothingItems([item, ...clothingItems]);
         closeActiveModal();
       })
       .catch(console.error);
