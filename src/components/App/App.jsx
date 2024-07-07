@@ -30,14 +30,13 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (values) => {
+  const onAddItem = (values, onDone) => {
     //first add item to the server, then to the dom
     return addItem(values)
       .then((item) => {
-        console.log(values);
-        console.log(item);
         setClothingItems([item, ...clothingItems]);
         closeActiveModal();
+        onDone();
       })
       .catch(console.error);
   };
