@@ -7,7 +7,14 @@ function WeatherCard({ weatherData }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherData?.temp?.[currentTemperatureUnit] || 999;
 
-  const filteredOptions = weatherOptions.filter((option) => {
+  // const filteredOptions = weatherOptions.filter((option) => {
+  //   return (
+  //     option.day === weatherData.isDay &&
+  //     option.condition === weatherData.condition
+  //   );
+  // });
+
+  const foundOption = weatherOptions.find((option) => {
     return (
       option.day === weatherData.isDay &&
       option.condition === weatherData.condition
@@ -16,10 +23,10 @@ function WeatherCard({ weatherData }) {
 
   let weatherOption;
 
-  if (filteredOptions.length === 0) {
+  if (foundOption === undefined) {
     weatherOption = defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
   } else {
-    weatherOption = filteredOptions[0];
+    weatherOption = foundOption;
   }
 
   return (

@@ -16,6 +16,10 @@
   width: 100%;
 }
 
+.card__image:hover {
+  cursor: pointer;
+}
+
 .card__title {
   position: absolute;
   top: 15px;

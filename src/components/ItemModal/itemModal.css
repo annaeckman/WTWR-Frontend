@@ -36,6 +36,10 @@
   padding: 20px 32px;
 }
 
+.modal__delete-btn:hover {
+  cursor: pointer;
+}
+
 .modal__footer {
   display: flex;
   flex-direction: row;

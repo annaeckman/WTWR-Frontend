@@ -38,6 +38,10 @@
   background: none;
 }
 
+.header__add-btn:hover {
+  cursor: pointer;
+}
+
 .header__date-and-location {
   margin: 0;
 }

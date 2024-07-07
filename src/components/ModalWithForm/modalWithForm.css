@@ -47,6 +47,10 @@
   background-size: contain;
 }
 
+.modal__close:hover {
+  cursor: pointer;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -102,10 +106,18 @@
 .modal__submit {
   width: 124px;
   height: 36px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #000;
   border: none;
   border-radius: 4px;
   color: #fff;
   margin-top: 32px;
   padding: 0;
+}
+
+.modal__submit:hover {
+  cursor: pointer;
+}
+
+.modal__submit:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
 }

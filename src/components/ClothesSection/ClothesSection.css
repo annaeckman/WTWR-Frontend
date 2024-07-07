@@ -19,6 +19,10 @@
   opacity: 0.6;
 }
 
+.clothes-section__add-btn:hover {
+  cursor: pointer;
+}
+
 .clothes-section__cards-list {
   margin: 0;
   margin-top: 16px;
