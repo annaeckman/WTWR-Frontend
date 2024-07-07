@@ -11,7 +11,7 @@ function ClothesSection({ onCardClick, clothingItems, handleAddClick }) {
           type="button"
           className="clothes-section__add-btn"
         >
-          Add new
+          + Add new
         </button>
       </div>
       <ul className="clothes-section__cards-list">
