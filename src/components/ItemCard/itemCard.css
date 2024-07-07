@@ -20,10 +20,14 @@
   position: absolute;
   top: 15px;
   margin: 0;
-  font-size: 16px;
-  line-height: 20px;
   color: rgba(0, 0, 0, 0.6);
   background-color: #fff;
-  font-weight: 700;
+  width: 100%;
+  border-radius: 4px;
   font-family: "CabinetGrotesk-Medium";
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  text-align: center;
+  max-width: 68px;
 }
