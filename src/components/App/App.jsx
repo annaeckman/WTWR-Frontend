@@ -13,6 +13,7 @@ import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, deleteItem, addItem } from "../../utils/Api";
+import { registerUser, signinUser } from "../../utils/auth";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -64,6 +65,18 @@ function App() {
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
+  };
+
+  const handleRegistration = (name, password, email, avatar) => {
+    registerUser(name, password, email, avatar)
+      .then((user) => {
+        console.log(user);
+        setIsLoggedIn(true);
+        closeActiveModal();
+      })
+      .catch((res) => {
+        console.log(`There is an error in handleUserRegistration: ${res}`);
+      });
   };
 
   useEffect(() => {
@@ -132,6 +145,13 @@ function App() {
               card={selectedCard}
               onClose={closeActiveModal}
               handleDeleteItem={handleDeleteItem}
+            />
+          )}
+          {activeModal === "register" && (
+            <RegisterModal
+              activeModal={activeModal}
+              onClose={closeActiveModal}
+              handleRegistration={handleRegistration}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>
