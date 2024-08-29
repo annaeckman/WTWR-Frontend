@@ -20,6 +20,7 @@ function RegisterModal({ handleRegistration, activeModal, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleRegistration(data);
+    // sign user in after successful registration
   };
 
   return (
