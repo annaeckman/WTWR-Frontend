@@ -13,6 +13,7 @@ import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
 import { getItems, deleteItem, addItem } from "../../utils/Api";
 import { registerUser, signinUser } from "../../utils/auth";
 
@@ -79,11 +80,17 @@ function App() {
     setActiveModal("login");
   };
 
-  const handleRegistration = (name, password, email, avatar) => {
-    registerUser(name, password, email, avatar)
-      .then((user) => {
-        console.log(user);
+  const handleRegistration = ({ name, password, email, avatar }) => {
+    registerUser({
+      name,
+      password,
+      email,
+      avatar,
+    })
+      .then((response) => {
+        console.log(response);
         setIsLoggedIn(true);
+        setCurrentUser(response.data);
         closeActiveModal();
       })
       .catch((res) => {

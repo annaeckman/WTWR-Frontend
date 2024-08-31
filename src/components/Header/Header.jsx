@@ -17,6 +17,7 @@ function Header({
     month: "long",
     day: "numeric",
   });
+
   const currentUser = useContext(CurrentUserContext);
 
   return (

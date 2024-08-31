@@ -1,12 +1,13 @@
 import { useState } from "react";
 import "./RegisterModal.css";
+import { Link } from "react-router-dom";
 
 function RegisterModal({ handleRegistration, activeModal, onClose }) {
   const [data, setData] = useState({
     email: "",
     password: "",
     name: "",
-    avatarUrl: "",
+    avatar: "",
   });
 
   const handleChange = (e) => {
@@ -69,15 +70,15 @@ function RegisterModal({ handleRegistration, activeModal, onClose }) {
             onChange={handleChange}
             required
           />
-          <label className="modal__label" htmlFor="avatarUrl">
+          <label className="modal__label" htmlFor="avatar">
             Avatar URL
           </label>
           <input
             className="modal__input"
-            id="avatarUrl"
-            name="avatarUrl"
+            id="avatar"
+            name="avatar"
             type="url"
-            value={data.avatarUrl}
+            value={data.avatar}
             onChange={handleChange}
             required
           />

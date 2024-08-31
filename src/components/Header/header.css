@@ -56,6 +56,28 @@
   margin: 0;
 }
 
+.header__register {
+  margin: 0 20px 0 auto;
+  font-weight: 700;
+  border: none;
+  background: none;
+}
+
+.header__register:hover {
+  cursor: pointer;
+}
+
+.header__login {
+  margin: 0 20px 0 auto;
+  font-weight: 700;
+  border: none;
+  background: none;
+}
+
+.header__login:hover {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 330px) and (max-width: 530px) {
   .header {
     flex-direction: column;
