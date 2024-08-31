@@ -40,7 +40,7 @@ function App() {
 
   const onAddItem = (values, onDone) => {
     //first add item to the server, then to the dom
-    return addItem(values)
+    return addItem(values, token)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         closeActiveModal();
@@ -49,8 +49,8 @@ function App() {
       .catch(console.error);
   };
 
-  const handleDeleteItem = (id) => {
-    return deleteItem(id)
+  const handleDeleteItem = (id, token) => {
+    return deleteItem(id, token)
       .then(() => {
         const updatedClothingItems = clothingItems.filter(
           (item) => item._id !== id
@@ -90,6 +90,7 @@ function App() {
       avatar,
     })
       .then((res) => {
+        console.log(res);
         setIsLoggedIn(true);
         setCurrentUser(res.data);
         closeActiveModal();
@@ -108,9 +109,10 @@ function App() {
         }
       })
       .then((res) => {
+        console.log(res);
         setIsLoggedIn(true);
-        setCurrentUser(res.data);
-        setToken(data.token);
+        setCurrentUser(res);
+        setToken(res.token);
         closeActiveModal();
       })
       .catch((res) => {
@@ -136,6 +138,22 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+
+    if (!jwt) {
+      return;
+    }
+
+    isValidToken(jwt)
+      .then((res) => {
+        setCurrentUser(res.data);
+        setToken(jwt);
+        setIsLoggedIn(true);
+      })
+      .catch(console.error);
+  }, [token]);
 
   return (
     <BrowserRouter basename="/se_project_react">
