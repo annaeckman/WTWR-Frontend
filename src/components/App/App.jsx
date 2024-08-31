@@ -14,8 +14,9 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 import { getItems, deleteItem, addItem } from "../../utils/Api";
-import { registerUser, signinUser } from "../../utils/auth";
+import { registerUser, signinUser, isValidToken } from "../../utils/auth";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -30,6 +31,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState("");
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -87,9 +89,9 @@ function App() {
       email,
       avatar,
     })
-      .then((response) => {
+      .then((res) => {
         setIsLoggedIn(true);
-        setCurrentUser(response.data);
+        setCurrentUser(res.data);
         closeActiveModal();
       })
       .catch((res) => {
@@ -99,9 +101,16 @@ function App() {
 
   const handleLogin = ({ email, password }) => {
     signinUser({ email, password })
-      .then((response) => {
+      .then((data) => {
+        localStorage.setItem("jwt", data.token);
+        if (data.token) {
+          return isValidToken(data.token);
+        }
+      })
+      .then((res) => {
         setIsLoggedIn(true);
-        setCurrentUser(response.data);
+        setCurrentUser(res.data);
+        setToken(data.token);
         closeActiveModal();
       })
       .catch((res) => {
@@ -189,6 +198,13 @@ function App() {
                 activeModal={activeModal}
                 onClose={closeActiveModal}
                 handleRegistration={handleRegistration}
+              />
+            )}
+            {activeModal === "login" && (
+              <LoginModal
+                activeModal={activeModal}
+                onClose={closeActiveModal}
+                handleLogin={handleLogin}
               />
             )}
           </CurrentTemperatureUnitContext.Provider>

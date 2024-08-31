@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Logo from "./Logo";
-import "./styles/LoginModal.css";
+import "./LoginModal.css";
 
 const LoginUser = ({ handleLogin, activeModal, onClose }) => {
   const [data, setData] = useState({

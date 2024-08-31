@@ -21,4 +21,18 @@ function signinUser({ email, password }) {
   }).then(processServerResponse);
 }
 
-export { registerUser, signinUser };
+function isValidToken(token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  })
+    .then((data) => {
+      return data;
+    })
+    .then(processServerResponse);
+}
+
+export { registerUser, signinUser, isValidToken };
