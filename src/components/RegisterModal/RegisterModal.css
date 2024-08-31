@@ -74,33 +74,6 @@
   padding-top: 8px;
 }
 
-.modal__radio-buttons {
-  display: flex;
-  flex-direction: column;
-  border: none;
-  padding: 0;
-  align-items: flex-start;
-  margin: 0;
-  color: #000;
-  accent-color: #000;
-}
-
-.modal__legend {
-  padding-bottom: 12px;
-}
-
-.modal__radio-input {
-  margin-right: 5px;
-}
-
-.modal__label_type_radio {
-  padding-bottom: 8px;
-}
-
-.modal__label_type_radio:last-of-type {
-  padding-bottom: 0px;
-}
-
 .modal__submit {
   width: 124px;
   height: 36px;

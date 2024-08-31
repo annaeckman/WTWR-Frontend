@@ -88,13 +88,24 @@ function App() {
       avatar,
     })
       .then((response) => {
-        console.log(response);
         setIsLoggedIn(true);
         setCurrentUser(response.data);
         closeActiveModal();
       })
       .catch((res) => {
         console.log(`There is an error in handleUserRegistration: ${res}`);
+      });
+  };
+
+  const handleLogin = ({ email, password }) => {
+    signinUser({ email, password })
+      .then((response) => {
+        setIsLoggedIn(true);
+        setCurrentUser(response.data);
+        closeActiveModal();
+      })
+      .catch((res) => {
+        console.log(`There is an error in handleLogin: ${res}`);
       });
   };
 
