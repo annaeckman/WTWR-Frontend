@@ -4,8 +4,17 @@ import avatar from "../../images/avatar.png";
 function Sidebar() {
   return (
     <div className="sidebar">
-      <img src={avatar} alt="default avatar" className="sidebar__avatar" />
-      <p className="sidebar__username">username</p>
+      <div className="sidebar__avatar-container">
+        <img src={avatar} alt="default avatar" className="sidebar__avatar" />
+        <p className="sidebar__username">username</p>
+      </div>
+
+      <div className="sidebar__buttons-container">
+        <button className="sidebar__edit-profile-btn">
+          Change profile data
+        </button>
+        <button className="sidebar__logout-btn">Log out</button>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 const baseUrl = "http://localhost:3001";
-import { processServerResponse } from "../utils/utils";
+import { processServerResponse } from "./utils";
+import { getToken } from "./token";
 
 function registerUser({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
@@ -21,6 +22,19 @@ function signinUser({ email, password }) {
   }).then(processServerResponse);
 }
 
+function updateUser({ name, avatar }) {
+  const token = getToken();
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(processServerResponse);
+}
+
 function isValidToken(token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
@@ -35,4 +49,4 @@ function isValidToken(token) {
     .then(processServerResponse);
 }
 
-export { registerUser, signinUser, isValidToken };
+export { registerUser, signinUser, isValidToken, updateUser };

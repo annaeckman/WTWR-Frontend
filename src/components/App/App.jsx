@@ -14,6 +14,7 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { getItems, deleteItem, addItem } from "../../utils/Api";
 import { registerUser, signinUser, isValidToken } from "../../utils/auth";
@@ -100,6 +101,13 @@ function App() {
       });
   };
 
+  const handleEditProfile = ({ name, avatar }) => {
+    editUser({ name, avatar }).then((res) => {
+      setCurrentUser(res.data);
+      closeActiveModal();
+    });
+  };
+
   const handleLogin = ({ email, password }) => {
     signinUser({ email, password })
       .then((data) => {
@@ -109,7 +117,6 @@ function App() {
         }
       })
       .then((res) => {
-        console.log(res);
         setIsLoggedIn(true);
         setCurrentUser(res);
         setToken(res.token);
@@ -133,7 +140,6 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log(data);
         setClothingItems(data);
       })
       .catch(console.error);
@@ -223,6 +229,13 @@ function App() {
                 activeModal={activeModal}
                 onClose={closeActiveModal}
                 handleLogin={handleLogin}
+              />
+            )}
+            {activeModal === "edit-profile" && (
+              <EditProfileModal
+                activeModal={activeModal}
+                onClose={closeActiveModal}
+                handleEditProfile={handleEditProfile}
               />
             )}
           </CurrentTemperatureUnitContext.Provider>
