@@ -1,12 +1,20 @@
 import "./SideBar.css";
-import avatar from "../../images/avatar.png";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
 function Sidebar({ handleEditProfileClick }) {
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <div className="sidebar">
       <div className="sidebar__avatar-container">
-        <img src={avatar} alt="default avatar" className="sidebar__avatar" />
-        <p className="sidebar__username">username</p>
+        <img
+          src={currentUser?.avatar}
+          alt={currentUser?.name}
+          className="sidebar__avatar"
+        />
+
+        <p className="sidebar__username">u{currentUser?.name}</p>
       </div>
 
       <div className="sidebar__buttons-container">

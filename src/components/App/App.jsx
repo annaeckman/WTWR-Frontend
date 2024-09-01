@@ -17,7 +17,12 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { getItems, deleteItem, addItem } from "../../utils/Api";
-import { registerUser, signinUser, isValidToken } from "../../utils/auth";
+import {
+  registerUser,
+  signinUser,
+  isValidToken,
+  updateUser,
+} from "../../utils/auth";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -106,8 +111,9 @@ function App() {
   };
 
   const handleEditProfile = ({ name, avatar }) => {
-    editUser({ name, avatar }).then((res) => {
-      setCurrentUser(res.data);
+    updateUser({ name, avatar }).then((res) => {
+      console.log(res);
+      setCurrentUser(res);
       closeActiveModal();
     });
   };
