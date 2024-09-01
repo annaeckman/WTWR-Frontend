@@ -67,6 +67,10 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
+  };
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -192,6 +196,7 @@ function App() {
                   path="/profile"
                   element={
                     <Profile
+                      handleEditProfileClick={handleEditProfileClick}
                       clothingItems={clothingItems}
                       onCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
