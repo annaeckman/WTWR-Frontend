@@ -111,11 +111,14 @@ function App() {
   };
 
   const handleEditProfile = ({ name, avatar }) => {
-    updateUser({ name, avatar }).then((res) => {
-      console.log(res);
-      setCurrentUser(res);
-      closeActiveModal();
-    });
+    updateUser({ name, avatar })
+      .then((res) => {
+        setCurrentUser(res);
+        closeActiveModal();
+      })
+      .catch((res) => {
+        console.log(`There is an error in handleEditProfile: ${res}`);
+      });
   };
 
   const handleLogin = ({ email, password }) => {
