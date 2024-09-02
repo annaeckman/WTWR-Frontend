@@ -172,7 +172,7 @@ function App() {
 
     isValidToken(jwt)
       .then((res) => {
-        setCurrentUser(res.data);
+        setCurrentUser(res);
         setToken(jwt);
         setIsLoggedIn(true);
       })

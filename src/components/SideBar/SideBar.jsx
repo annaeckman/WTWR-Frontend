@@ -14,7 +14,7 @@ function Sidebar({ handleEditProfileClick, onLogout }) {
           className="sidebar__avatar"
         />
 
-        <p className="sidebar__username">u{currentUser?.name}</p>
+        <p className="sidebar__username">{currentUser?.name}</p>
       </div>
 
       <div className="sidebar__buttons-container">
