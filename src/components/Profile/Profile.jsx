@@ -7,11 +7,15 @@ function Profile({
   onCardClick,
   clothingItems,
   handleAddClick,
+  handleLogout,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <Sidebar handleEditProfileClick={handleEditProfileClick} />
+        <Sidebar
+          handleEditProfileClick={handleEditProfileClick}
+          onLogout={handleLogout}
+        />
       </section>
       <section className="profile__clothing-items">
         <ClothesSection

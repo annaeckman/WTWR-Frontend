@@ -113,6 +113,7 @@ function App() {
   const handleEditProfile = ({ name, avatar }) => {
     updateUser({ name, avatar })
       .then((res) => {
+        console.log(res);
         setCurrentUser(res);
         closeActiveModal();
       })
@@ -124,20 +125,24 @@ function App() {
   const handleLogin = ({ email, password }) => {
     signinUser({ email, password })
       .then((data) => {
-        localStorage.setItem("jwt", data.token);
-        if (data.token) {
-          return isValidToken(data.token);
-        }
+        setToken(data.token);
+        setIsLoggedIn(true);
+        return isValidToken(data.token);
       })
       .then((res) => {
-        setIsLoggedIn(true);
         setCurrentUser(res);
-        setToken(res.token);
         closeActiveModal();
       })
-      .catch((res) => {
-        console.log(`There is an error in handleLogin: ${res}`);
+      .catch((err) => {
+        console.error("Login failed", err);
       });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    // add navigate to main page...
   };
 
   useEffect(() => {
@@ -209,6 +214,7 @@ function App() {
                       clothingItems={clothingItems}
                       onCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
+                      handleLogout={handleLogout}
                     />
                   }
                 />

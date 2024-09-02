@@ -24,6 +24,7 @@ function signinUser({ email, password }) {
 
 function updateUser({ name, avatar }) {
   const token = getToken();
+  console.log(token);
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
