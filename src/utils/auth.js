@@ -37,7 +37,7 @@ function updateUser({ name, avatar }) {
   }).then(processServerResponse);
 }
 
-function isValidToken(token) {
+function getUserByToken(token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
@@ -47,4 +47,4 @@ function isValidToken(token) {
   }).then(processServerResponse);
 }
 
-export { registerUser, signinUser, isValidToken, updateUser };
+export { registerUser, signinUser, getUserByToken, updateUser };

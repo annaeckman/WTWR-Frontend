@@ -1,4 +1,5 @@
 import { processServerResponse } from "../utils/utils";
+import { getToken } from "../utils/token";
 const baseUrl = "http://localhost:3001";
 
 function getItems() {
@@ -26,4 +27,26 @@ function addItem({ name, weather, imageUrl }, token) {
   }).then(processServerResponse);
 }
 
-export { getItems, deleteItem, addItem };
+function likeItem(id) {
+  const token = getToken();
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authroization: `Bearer ${token}`,
+    },
+  }).then(processServerResponse);
+}
+
+function unlikeItem(id) {
+  const token = getToken();
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authroization: `Bearer ${token}`,
+    },
+  }).then(processServerResponse);
+}
+
+export { getItems, deleteItem, addItem, likeItem, unlikeItem };
