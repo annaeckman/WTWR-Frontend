@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
 
 import "../App/App.css";
 
@@ -37,7 +37,10 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [protectedDestination, setProtectedDestination] = useState("");
   const [token, setToken] = useState("");
+
+  const navigate = useNavigate();
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -123,15 +126,21 @@ function App() {
   };
 
   const handleLogin = ({ email, password }) => {
+    if (!email || !password) {
+      return;
+    }
+
     signinUser({ email, password })
       .then((data) => {
-        setToken(data.token);
-        setIsLoggedIn(true);
-        return isValidToken(data.token);
-      })
-      .then((res) => {
-        setCurrentUser(res);
-        closeActiveModal();
+        if (data.token) {
+          setToken(data.token);
+          setCurrentUser(data);
+          setIsLoggedIn(true);
+          navigate(protectedDestination || "/");
+          closeActiveModal();
+          setProtectedDestination("");
+          // add a fn to reset the login form
+        }
       })
       .catch((err) => {
         console.error("Login failed", err);
@@ -180,7 +189,7 @@ function App() {
   }, [token]);
 
   return (
-    <BrowserRouter basename="/se_project_react">
+    <BrowserRouter>
       <div className="app">
         <CurrentUserContext.Provider value={currentUser}>
           <CurrentTemperatureUnitContext.Provider
@@ -209,13 +218,15 @@ function App() {
                 <Route
                   path="/profile"
                   element={
-                    <Profile
-                      handleEditProfileClick={handleEditProfileClick}
-                      clothingItems={clothingItems}
-                      onCardClick={handleCardClick}
-                      handleAddClick={handleAddClick}
-                      handleLogout={handleLogout}
-                    />
+                    <ProtectedRoute>
+                      <Profile
+                        handleEditProfileClick={handleEditProfileClick}
+                        clothingItems={clothingItems}
+                        onCardClick={handleCardClick}
+                        handleAddClick={handleAddClick}
+                        handleLogout={handleLogout}
+                      />
+                    </ProtectedRoute>
                   }
                 />
               </Routes>

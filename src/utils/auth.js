@@ -16,6 +16,7 @@ function signinUser({ email, password }) {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
+      Accept: "application.json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
@@ -43,11 +44,7 @@ function isValidToken(token) {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  })
-    .then((data) => {
-      return data;
-    })
-    .then(processServerResponse);
+  }).then(processServerResponse);
 }
 
 export { registerUser, signinUser, isValidToken, updateUser };
