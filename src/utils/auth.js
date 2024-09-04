@@ -16,7 +16,7 @@ function signinUser({ email, password }) {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
-      Accept: "application.json",
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),

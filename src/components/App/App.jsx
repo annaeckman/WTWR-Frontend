@@ -55,9 +55,10 @@ function App() {
 
   const onAddItem = (values, onDone) => {
     //first add item to the server, then to the dom
+    const token = getToken();
     return addItem(values, token)
-      .then((item) => {
-        setClothingItems([item, ...clothingItems]);
+      .then((res) => {
+        setClothingItems([res.data, ...clothingItems]);
         closeActiveModal();
         onDone();
       })
@@ -182,7 +183,7 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser(null);
-    // add navigate to main page...
+    navigate("/");
   };
 
   useEffect(() => {
@@ -205,16 +206,13 @@ function App() {
 
   useEffect(() => {
     const token = getToken();
-    console.log(token);
-    if (!token) {
+    if (!token || token === "undefined") {
       return;
     }
 
     getUserByToken(token)
       .then((res) => {
-        console.log(res);
         setCurrentUser(res);
-        setToken(res.token);
         setIsLoggedIn(true);
       })
       .catch(console.error);

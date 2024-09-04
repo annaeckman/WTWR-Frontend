@@ -7,6 +7,7 @@ function getItems() {
 }
 
 function deleteItem(id, token) {
+  console.log(token);
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
