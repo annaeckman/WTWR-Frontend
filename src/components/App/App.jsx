@@ -107,7 +107,7 @@ function App() {
     const token = getToken();
 
     const updateClothingItems = (newCard) => (cards) => {
-      cards.map((item) => (item._id === id ? newCard : item));
+      return cards.map((item) => (item._id === id ? newCard : item));
     };
 
     if (!isLiked) {
@@ -115,14 +115,14 @@ function App() {
         .then((newCard) => {
           console.log("New card after like", newCard);
 
-          setClothingItems(updateClothingItems(newCard));
+          setClothingItems(updateClothingItems(newCard.item));
         })
         .catch(console.error);
     } else if (isLiked) {
       unlikeItem(id, token)
         .then((newCard) => {
           console.log("New card after unlike", newCard);
-          setClothingItems(updateClothingItems(newCard));
+          setClothingItems(updateClothingItems(newCard.item));
         })
         .catch(console.error);
     }
