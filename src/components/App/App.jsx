@@ -241,6 +241,7 @@ function App() {
                     weatherData={weatherData}
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -253,6 +254,7 @@ function App() {
                     onCardClick={handleCardClick}
                     handleAddClick={handleAddClick}
                     handleLogout={handleLogout}
+                    onCardLike={handleCardLike}
                   />
                 }
               />

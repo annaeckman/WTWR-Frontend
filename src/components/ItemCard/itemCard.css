@@ -35,3 +35,13 @@
   text-align: center;
   max-width: 68px;
 }
+
+.card__like-btn {
+  position: absolute;
+  top: 20px;
+  right: 100px;
+  display: flex;
+  width: 18px;
+  height: 15px;
+  cursor: pointer;
+}

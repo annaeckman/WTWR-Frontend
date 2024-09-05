@@ -34,7 +34,7 @@ function likeItem(id) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      authroization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
 }
@@ -45,7 +45,7 @@ function unlikeItem(id) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authroization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
 }
