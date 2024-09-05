@@ -15,6 +15,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 import LoginModal from "../LoginModal/LoginModal";
 import {
   getItems,
@@ -48,11 +49,6 @@ function App() {
 
   const navigate = useNavigate();
 
-  const handleCardClick = (card) => {
-    setActiveModal("preview");
-    setSelectedCard(card);
-  };
-
   const onAddItem = (values, onDone) => {
     //first add item to the server, then to the dom
     const token = getToken();
@@ -65,17 +61,26 @@ function App() {
       .catch(console.error);
   };
 
-  const handleDeleteItem = (id, token) => {
-    return deleteItem(id, token)
+  const handleDeleteItem = () => {
+    const token = getToken();
+    console.log(`card_id: ${selectedCard._id}`);
+    console.log(`Token: ${token}`);
+
+    deleteItem(selectedCard._id, token)
       .then(() => {
-        const updatedClothingItems = clothingItems.filter(
-          (item) => item._id !== id
+        setClothingItems((prevItem) =>
+          prevItem.filter((item) => item._id !== selectedCard._id)
         );
-        setClothingItems(updatedClothingItems);
+        closeActiveModal();
       })
       .catch((error) => {
         console.error("Error deleting this item", error);
       });
+  };
+
+  const handleCardClick = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
   };
 
   const handleAddClick = () => {
@@ -100,6 +105,10 @@ function App() {
 
   const handleLoginClick = () => {
     setActiveModal("login");
+  };
+
+  const handleDeleteClick = () => {
+    setActiveModal("delete-item");
   };
 
   const handleCardLike = ({ _id, isLiked }) => {
@@ -275,7 +284,7 @@ function App() {
               activeModal={activeModal}
               card={selectedCard}
               onClose={closeActiveModal}
-              handleDeleteItem={handleDeleteItem}
+              handleDeleteClick={handleDeleteClick}
             />
           )}
           {activeModal === "register" && (
@@ -297,6 +306,13 @@ function App() {
               activeModal={activeModal}
               onClose={closeActiveModal}
               handleEditProfile={handleEditProfile}
+            />
+          )}
+          {activeModal === "delete-item" && (
+            <DeleteConfirmModal
+              activeModal={activeModal}
+              onClose={closeActiveModal}
+              onDelete={handleDeleteItem}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

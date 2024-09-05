@@ -1,14 +1,13 @@
 import "./itemModal.css";
-import { getToken } from "../../utils/token";
 
-function ItemModal({ activeModal, card, onClose, handleDeleteItem }) {
-  const handleDeleteClick = () => {
-    const token = getToken();
-    console.log(`Token: ${token}`);
-    console.log(`card_id: ${card._id}`);
-    handleDeleteItem(card._id, token);
-    onClose();
-  };
+function ItemModal({ activeModal, card, onClose, handleDeleteClick }) {
+  // const handleDeleteClick = () => {
+  //   const token = getToken();
+  //   console.log(`Token: ${token}`);
+  //   console.log(`card_id: ${card._id}`);
+  //   handleDeleteItem(card._id, token);
+  //   onClose();
+  // };
 
   return (
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
