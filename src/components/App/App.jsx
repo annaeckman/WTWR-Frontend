@@ -106,22 +106,23 @@ function App() {
     const id = _id;
     const token = getToken();
 
+    const updateClothingItems = (newCard) => (cards) => {
+      cards.map((item) => (item._id === id ? newCard : item));
+    };
+
     if (!isLiked) {
       likeItem(id, token)
         .then((newCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? newCard : item))
-          );
+          console.log("New card after like", newCard);
+
+          setClothingItems(updateClothingItems(newCard));
         })
         .catch(console.error);
-    }
-
-    if (isLiked) {
+    } else if (isLiked) {
       unlikeItem(id, token)
         .then((newCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? newCard : item))
-          );
+          console.log("New card after unlike", newCard);
+          setClothingItems(updateClothingItems(newCard));
         })
         .catch(console.error);
     }
