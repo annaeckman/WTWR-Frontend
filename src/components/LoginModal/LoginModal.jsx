@@ -62,7 +62,7 @@ const LoginUser = ({ handleLogin, activeModal, onClose }) => {
         </form>
         <div className="register__signin">
           <p>Already a member?</p>
-          <Link to="signup" className="register__login-link">
+          <Link to="signup" className="modal__login-link">
             or Sign Up
           </Link>
         </div>

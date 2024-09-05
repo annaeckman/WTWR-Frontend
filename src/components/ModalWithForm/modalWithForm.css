@@ -28,10 +28,10 @@
 .modal__title {
   margin: 0;
   font-size: 16px;
-  padding-bottom: 20px;
-}
-
-.modal__label {
+  padding-bottom: 24px;
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .modal__close {
@@ -55,14 +55,7 @@
 .modal__form {
   display: flex;
   flex-direction: column;
-  font-family: "CabinetGrotesk-Bold";
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 700;
-}
-
-.modal__label {
-  margin-bottom: 24px;
+  width: 100%;
 }
 
 .modal__input {

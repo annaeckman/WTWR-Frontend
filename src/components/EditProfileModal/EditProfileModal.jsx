@@ -33,7 +33,7 @@ function EditProfileModal({ handleEditProfile, activeModal, onClose }) {
         ></button>
         <form className="modal__form" onSubmit={handleSubmit}>
           <label className="modal__label" htmlFor="name">
-            Name
+            Name *
           </label>
           <input
             className="modal__input"
@@ -45,7 +45,7 @@ function EditProfileModal({ handleEditProfile, activeModal, onClose }) {
             required
           />
           <label className="modal__label" htmlFor="avatar">
-            Avatar URL
+            Avatar URL *
           </label>
           <input
             className="modal__input"

@@ -20,12 +20,14 @@ function ItemCard({ item, onCardClick, onCardLike }) {
   return (
     <li className="card-container">
       <h2 className="card__title"> {item.name} </h2>
-      <img
-        src={isLiked ? likeActive : likeInactive}
-        alt={isLiked ? "Unlike" : "Like"}
-        className="card__like-btn"
-        onClick={handleLike}
-      />
+      {currentUser && (
+        <img
+          src={isLiked ? likeActive : likeInactive}
+          alt={isLiked ? "Unlike" : "Like"}
+          className="card__like-btn"
+          onClick={handleLike}
+        />
+      )}
       <img
         onClick={handleCardClick}
         className="card__image"

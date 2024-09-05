@@ -1,4 +1,4 @@
-.modal_content_type_delete {
+.modal__content_type_delete {
   display: flex;
   max-width: 670px;
   max-height: 280px;
@@ -6,12 +6,18 @@
   text-align: center;
   padding: 60px 152px 60px 151px;
   margin: 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 20px;
+  position: relative;
 }
 .modal__heading-delete {
   margin: 0 0 40px 0;
   font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
+  text-align: center;
 }
 .modal__delete-confirm {
   width: fit-content;

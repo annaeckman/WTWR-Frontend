@@ -35,7 +35,7 @@ function RegisterModal({ handleRegistration, activeModal, onClose }) {
         ></button>
         <form className="modal__form" onSubmit={handleSubmit}>
           <label className="modal__label" htmlFor="email">
-            Email
+            Email *
           </label>
           <input
             className="modal__input"
@@ -47,7 +47,7 @@ function RegisterModal({ handleRegistration, activeModal, onClose }) {
             required
           />
           <label className="modal__label" htmlFor="password">
-            Password
+            Password *
           </label>
           <input
             className="modal__input"
@@ -59,7 +59,7 @@ function RegisterModal({ handleRegistration, activeModal, onClose }) {
             required
           />
           <label className="modal__label" htmlFor="name">
-            Name
+            Name *
           </label>
           <input
             className="modal__input"
@@ -71,7 +71,7 @@ function RegisterModal({ handleRegistration, activeModal, onClose }) {
             required
           />
           <label className="modal__label" htmlFor="avatar">
-            Avatar URL
+            Avatar URL *
           </label>
           <input
             className="modal__input"
@@ -86,14 +86,13 @@ function RegisterModal({ handleRegistration, activeModal, onClose }) {
             <button type="submit" className="modal__submit">
               Sign up
             </button>
+            <div className="register__signin">
+              <Link to="login" className="modal__login-link">
+                or Log In
+              </Link>
+            </div>
           </div>
         </form>
-        <div className="register__signin">
-          <p>Already a member?</p>
-          <Link to="login" className="register__login-link">
-            or Log In
-          </Link>
-        </div>
       </div>
     </div>
   );
