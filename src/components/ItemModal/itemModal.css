@@ -1,13 +1,13 @@
-.modal__content_type_image {
+.item-modal__content_type_image {
   padding: 0;
 }
 
-.modal__image {
+.item-modal__image {
   height: 100%;
   width: 100%;
 }
 
-.modal__caption {
+.item-modal__caption {
   margin: 0;
   padding-top: 20px;
   padding-left: 32px;
@@ -16,7 +16,7 @@
   line-height: 24px;
 }
 
-.modal__weather {
+.item-modal__weather {
   font-family: "CabinetGrotesk-Medium";
   font-size: 20px;
   line-height: 24px;
@@ -24,7 +24,7 @@
   padding: 20px 0px 32px 32px;
 }
 
-.modal__delete-btn {
+.item-modal__delete-btn {
   font-family: "CabinetGrotesk-Medium";
   font-size: 20px;
   font-weight: 700;
@@ -36,11 +36,11 @@
   padding: 20px 32px;
 }
 
-.modal__delete-btn:hover {
+.item-modal__delete-btn:hover {
   cursor: pointer;
 }
 
-.modal__footer {
+.item-modal__footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

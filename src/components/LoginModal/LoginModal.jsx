@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import "./LoginModal.css";
+import { Validation } from "../../utils/Validation";
 
 const LoginUser = ({ handleLogin, activeModal, onClose }) => {
   const [data, setData] = useState({
@@ -8,16 +9,31 @@ const LoginUser = ({ handleLogin, activeModal, onClose }) => {
     password: "",
   });
 
+  const { isValid, setIsValid, setErrors, errors } = Validation();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    setErrors({ ...errors, [name]: e.target.validationMessage });
+    setIsValid(e.target.closest("form").checkValidity());
   };
+
+  const resetForm = useCallback(
+    (resetValues = {}, resetErrors = {}, resetIsValid = false) => {
+      setData(resetValues);
+      setErrors(resetErrors);
+      setIsValid(resetIsValid);
+    },
+    [setData, setErrors, setIsValid]
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin(data);
+    resetForm();
   };
 
   return (
@@ -38,6 +54,9 @@ const LoginUser = ({ handleLogin, activeModal, onClose }) => {
             id="email"
             name="email"
             type="email"
+            minLength="4"
+            maxLength="64"
+            placeholder="Email"
             value={data.email}
             onChange={handleChange}
             required
@@ -50,22 +69,26 @@ const LoginUser = ({ handleLogin, activeModal, onClose }) => {
             id="password"
             name="password"
             type="password"
+            placeholder="Password"
             value={data.password}
             onChange={handleChange}
             required
           />
-          <div className="modal__button-container">
-            <button type="submit" className="modal__submit">
+          <div className="login-modal__button-container ">
+            <button
+              type="submit"
+              className={`login-modal__submit ${
+                !isValid ? "login-modal__submit_disabled" : ""
+              }`}
+              disabled={`${!isValid ? "disabled" : ""}`}
+            >
               Log In
             </button>
+            <Link to="signup" className="login-modal__link">
+              or Sign Up
+            </Link>
           </div>
         </form>
-        <div className="register__signin">
-          <p>Already a member?</p>
-          <Link to="signup" className="modal__login-link">
-            or Sign Up
-          </Link>
-        </div>
       </div>
     </div>
   );
