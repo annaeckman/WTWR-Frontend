@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../ModalWithForm/ModalWithForm";
+import { Validation } from "../../utils/Validation";
 
 function EditProfileModal({ handleEditProfile, activeModal, onClose }) {
   const [data, setData] = useState({
@@ -7,12 +8,16 @@ function EditProfileModal({ handleEditProfile, activeModal, onClose }) {
     avatar: "",
   });
 
+  const { isValid, setIsValid, setErrors, errors } = Validation();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    setErrors({ ...errors, [name]: e.target.validationMessage });
+    setIsValid(e.target.closest("form").checkValidity());
   };
 
   const handleSubmit = (e) => {
@@ -45,7 +50,7 @@ function EditProfileModal({ handleEditProfile, activeModal, onClose }) {
             required
           />
           <label className="modal__label" htmlFor="avatar">
-            Avatar URL *
+            Avatar *
           </label>
           <input
             className="modal__input"
@@ -57,7 +62,13 @@ function EditProfileModal({ handleEditProfile, activeModal, onClose }) {
             required
           />
           <div className="modal__button-container">
-            <button type="submit" className="modal__submit">
+            <button
+              type="submit"
+              className={`modal__submit ${
+                !isValid ? "modal__submit_disabled" : ""
+              }`}
+              disabled={`${!isValid ? "disabled" : ""}`}
+            >
               Save changes
             </button>
           </div>

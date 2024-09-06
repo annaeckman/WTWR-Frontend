@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import "./RegisterModal.css";
 import { Link } from "react-router-dom";
+import { Validation } from "../../utils/Validation";
 
 function RegisterModal({ handleRegistration, activeModal, onClose }) {
   const [data, setData] = useState({
@@ -10,17 +11,31 @@ function RegisterModal({ handleRegistration, activeModal, onClose }) {
     avatar: "",
   });
 
+  const { isValid, setIsValid, setErrors, errors } = Validation();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    setErrors({ ...errors, [name]: e.target.validationMessage });
+    setIsValid(e.target.closest("form").checkValidity());
   };
+
+  const resetForm = useCallback(
+    (resetValues = {}, resetErrors = {}, resetIsValid = false) => {
+      setData(resetValues);
+      setErrors(resetErrors);
+      setIsValid(resetIsValid);
+    },
+    [setData, setErrors, setIsValid]
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleRegistration(data);
+    resetForm();
     // sign user in after successful registration
   };
 
@@ -70,7 +85,7 @@ function RegisterModal({ handleRegistration, activeModal, onClose }) {
             onChange={handleChange}
             required
           />
-          <label className="modal__label" htmlFor="avatar">
+          <label className="register-modal__label" htmlFor="avatar">
             Avatar URL *
           </label>
           <input
@@ -82,15 +97,19 @@ function RegisterModal({ handleRegistration, activeModal, onClose }) {
             onChange={handleChange}
             required
           />
-          <div className="modal__button-container">
-            <button type="submit" className="modal__submit">
+          <div className="register-modal__button-container">
+            <button
+              type="submit"
+              className={`register-modal__submit ${
+                !isValid ? "register-modal__submit_disabled" : ""
+              }`}
+              disabled={`${!isValid ? "disabled" : ""}`}
+            >
               Sign up
             </button>
-            <div className="register__signin">
-              <Link to="login" className="modal__login-link">
-                or Log In
-              </Link>
-            </div>
+            <Link to="login" className="register-modal__link">
+              or Log In
+            </Link>
           </div>
         </form>
       </div>

@@ -4,7 +4,7 @@
 }
 
 .login-modal__submit {
-  width: 124px;
+  width: 73px;
   height: 36px;
   background-color: #000;
   border: none;
@@ -26,6 +26,7 @@
   font-weight: 700;
   text-decoration: none;
   color: #000;
+  opacity: 30%;
 }
 
 .login-modal__link_disabled {

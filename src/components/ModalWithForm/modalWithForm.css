@@ -87,6 +87,11 @@
 
 .modal__legend {
   padding-bottom: 12px;
+  padding-top: 24px;
+}
+
+.modal__label:last-of-type {
+  padding-top: 24px;
 }
 
 .modal__radio-input {
@@ -108,7 +113,7 @@
   border: none;
   border-radius: 4px;
   color: #fff;
-  margin-top: 32px;
+  margin: 32px 0 0 0;
   padding: 0;
 }
 
