@@ -1,24 +1,11 @@
 import { useState } from "react";
 import "../ModalWithForm/ModalWithForm";
-import { Validation } from "../../utils/Validation";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useFormAndValidation } from "../../utils/UseFormAndValidation";
 
 function EditProfileModal({ handleEditProfile, activeModal, onClose }) {
-  const [data, setData] = useState({
-    name: "",
-    avatar: "",
-  });
-
-  const { isValid, setIsValid, setErrors, errors } = Validation();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    setErrors({ ...errors, [name]: e.target.validationMessage });
-    setIsValid(e.target.closest("form").checkValidity());
-  };
+  const { values, handleChange, errors, isValid, setValues, resetForm } =
+    useFormAndValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,27 +24,27 @@ function EditProfileModal({ handleEditProfile, activeModal, onClose }) {
           onClick={onClose}
         ></button>
         <form className="modal__form" onSubmit={handleSubmit}>
-          <label className="modal__label" htmlFor="name">
+          <label className="modal__label" htmlFor="name-edit-profile">
             Name *
           </label>
           <input
             className="modal__input"
-            id="name"
+            id="name-edit-profile"
             name="name"
             type="text"
-            value={data.name}
+            value={values.name}
             onChange={handleChange}
             required
           />
-          <label className="modal__label" htmlFor="avatar">
+          <label className="modal__label" htmlFor="avatar-edit-profile">
             Avatar *
           </label>
           <input
             className="modal__input"
-            id="avatar"
+            id="avatar-edit-profile"
             name="avatar"
             type="url"
-            value={data.avatar}
+            value={values.avatar}
             onChange={handleChange}
             required
           />

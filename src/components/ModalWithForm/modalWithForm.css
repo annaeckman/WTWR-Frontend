@@ -115,6 +115,7 @@
   color: #fff;
   margin: 32px 0 0 0;
   padding: 0;
+  cursor: pointer;
 }
 
 .modal__submit:hover {
@@ -123,4 +124,19 @@
 
 .modal__submit:disabled {
   background-color: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.modal__text-button {
+  padding: 0 16px;
+  height: 36px;
+  border-style: none;
+  font-weight: 700;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.modal__el_hovered:hover {
+  opacity: 60%;
+  cursor: pointer;
 }

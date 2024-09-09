@@ -46,36 +46,40 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [protectedDestination, setProtectedDestination] = useState("/profile");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
+  const handleSubmit = (request) => {
+    // start loading
+    setIsLoading(true);
+    request()
+      .then(closeActiveModal)
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  };
+
   const onAddItem = (values, onDone) => {
-    //first add item to the server, then to the dom
     const token = getToken();
-    return addItem(values, token)
-      .then((res) => {
+    const makeRequest = () => {
+      return addItem(values, token).then((res) => {
         setClothingItems([res.data, ...clothingItems]);
-        closeActiveModal();
-        onDone();
-      })
-      .catch(console.error);
+      });
+    };
+    handleSubmit(makeRequest);
+    onDone();
   };
 
   const handleDeleteItem = () => {
     const token = getToken();
-    console.log(`card_id: ${selectedCard._id}`);
-    console.log(`Token: ${token}`);
-
-    deleteItem(selectedCard._id, token)
-      .then(() => {
+    const makeRequest = () => {
+      return deleteItem(selectedCard._id, token).then(() =>
         setClothingItems((prevItem) =>
           prevItem.filter((item) => item._id !== selectedCard._id)
-        );
-        closeActiveModal();
-      })
-      .catch((error) => {
-        console.error("Error deleting this item", error);
-      });
+        )
+      );
+    };
+    handleSubmit(makeRequest);
   };
 
   const handleCardClick = (card) => {
@@ -137,17 +141,15 @@ function App() {
     }
   };
 
-  const handleRegistration = ({ name, password, email, avatar }) => {
-    registerUser({
-      name,
-      password,
-      email,
-      avatar,
-    })
+  const handleRegistration = (values, resetRegistrationForm) => {
+    if (!values) return;
+
+    registerUser(values)
       .then((res) => {
         setIsLoggedIn(true);
-        navigate("/login");
+        navigate(protectedDestination || "/");
         setCurrentUser(res.data);
+        resetRegistrationForm();
         closeActiveModal();
       })
       .catch((res) => {
@@ -156,19 +158,14 @@ function App() {
   };
 
   const handleEditProfile = ({ name, avatar }) => {
-    updateUser({ name, avatar })
-      .then((res) => {
-        console.log(res);
-        setCurrentUser(res);
-        closeActiveModal();
-      })
-      .catch((res) => {
-        console.log(`There is an error in handleEditProfile: ${res}`);
-      });
+    function makeRequest() {
+      return updateUser({ name, avatar }).then(setCurrentUser);
+    }
+    handleSubmit(makeRequest);
   };
 
-  const handleLogin = ({ email, password }) => {
-    if (!email || !password) {
+  const handleLogin = (values, resetLoginForm) => {
+    if (!values) {
       return;
     }
 
@@ -195,6 +192,24 @@ function App() {
     setCurrentUser(null);
     navigate("/");
   };
+
+  useEffect(() => {
+    if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
+
+    const handleEscClose = (e) => {
+      // define the function inside useEffect not to lose the reference on rerendering
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      // don't forget to add a clean up function for removing the listener
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]); // watch activeModal here
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -271,50 +286,44 @@ function App() {
             </Routes>
 
             <Footer />
-          </div>
-          {activeModal === "add-garment" && (
             <AddItemModal
               handleCloseModal={closeActiveModal}
               isOpen={activeModal === "add-garment"}
               onAddItem={onAddItem}
             />
-          )}
-          {activeModal === "preview" && (
+
             <ItemModal
               activeModal={activeModal}
               card={selectedCard}
               onClose={closeActiveModal}
               handleDeleteClick={handleDeleteClick}
             />
-          )}
-          {activeModal === "register" && (
+
             <RegisterModal
-              activeModal={activeModal}
+              isOpen={activeModal === "register"}
               onClose={closeActiveModal}
               handleRegistration={handleRegistration}
+              isLoading={isLoading}
             />
-          )}
-          {activeModal === "login" && (
+
             <LoginModal
-              activeModal={activeModal}
+              isOpen={activeModal === "login"}
               onClose={closeActiveModal}
               handleLogin={handleLogin}
+              isLoading={isLoading}
             />
-          )}
-          {activeModal === "edit-profile" && (
+
             <EditProfileModal
               activeModal={activeModal}
               onClose={closeActiveModal}
               handleEditProfile={handleEditProfile}
             />
-          )}
-          {activeModal === "delete-item" && (
             <DeleteConfirmModal
               activeModal={activeModal}
               onClose={closeActiveModal}
               onDelete={handleDeleteItem}
             />
-          )}
+          </div>
         </CurrentTemperatureUnitContext.Provider>
       </CurrentUserContext.Provider>
     </div>

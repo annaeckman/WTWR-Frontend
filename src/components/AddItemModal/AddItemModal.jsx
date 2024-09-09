@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useFormAndValidation } from "../../utils/UseFormAndValidation";
 
 const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
-  const [values, setValues] = useState({ name: "", imageUrl: "", weather: "" });
-
-  const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
+  const { values, handleChange, errors, isValid, setValues, resetForm } =
+    useFormAndValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,11 +21,11 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
       onClose={handleCloseModal}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="name-item" className="modal__label">
         Name{" "}
         <input
           placeholder="Name"
-          name="name"
+          name="name-item"
           value={values.name}
           onChange={handleChange}
           id="name"
