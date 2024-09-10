@@ -27,7 +27,7 @@ function ItemModal({ activeModal, card, onClose, handleDeleteClick }) {
           <button
             type="button"
             className={`item-modal__delete-btn ${
-              card.owner?._id === currentUser ? "" : "model__delete_hidden"
+              card.owner === currentUser?._id ? "" : "model__delete_hidden"
             }`}
             onClick={handleDeleteClick}
           >
