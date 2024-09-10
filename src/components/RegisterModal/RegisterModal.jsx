@@ -53,7 +53,7 @@ function RegisterModal({
         id="password-register"
         name="password"
         type="password"
-        value={values.password}
+        value={values.password || ""}
         onChange={handleChange}
         required
       />
@@ -65,7 +65,7 @@ function RegisterModal({
         id="name-register"
         name="name"
         type="text"
-        value={values.name}
+        value={values.name || ""}
         onChange={handleChange}
         required
       />
@@ -77,7 +77,7 @@ function RegisterModal({
         id="avatar-register"
         name="avatar"
         type="url"
-        value={values.avatar}
+        value={values.avatar || ""}
         onChange={handleChange}
         required
       />

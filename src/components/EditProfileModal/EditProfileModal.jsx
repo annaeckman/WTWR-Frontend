@@ -35,7 +35,7 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
         id="name-edit-profile"
         name="name"
         type="text"
-        value={values.name}
+        value={values.name || ""}
         onChange={handleChange}
         required
       />
@@ -47,7 +47,7 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
         id="avatar-edit-profile"
         name="avatar"
         type="url"
-        value={values.avatar}
+        value={values.avatar || ""}
         onChange={handleChange}
         required
       />

@@ -44,7 +44,7 @@ const LoginModal = ({
         minLength="4"
         maxLength="64"
         placeholder="Email"
-        value={values.email}
+        value={values.email || ""}
         onChange={handleChange}
         required
       />
@@ -57,7 +57,7 @@ const LoginModal = ({
         name="password"
         type="password"
         placeholder="Password"
-        value={values.password}
+        value={values.password || ""}
         onChange={handleChange}
         required
       />
