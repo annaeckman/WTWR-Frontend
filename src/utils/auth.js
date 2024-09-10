@@ -23,9 +23,7 @@ function signinUser({ email, password }) {
   }).then(processServerResponse);
 }
 
-function updateUser({ name, avatar }) {
-  const token = getToken();
-  console.log(token);
+function updateUser(newData, token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
@@ -33,7 +31,7 @@ function updateUser({ name, avatar }) {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, avatar }),
+    body: JSON.stringify(newData),
   }).then(processServerResponse);
 }
 

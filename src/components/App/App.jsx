@@ -160,9 +160,15 @@ function App() {
       });
   };
 
-  const handleEditProfile = ({ name, avatar }) => {
+  const handleEditProfile = (values, resetCurrentForm) => {
+    const token = getToken();
     function makeRequest() {
-      return updateUser({ name, avatar }).then(setCurrentUser);
+      return updateUser(values, token).then((userData) => {
+        console.log(userData);
+        setCurrentUser(userData);
+        resetCurrentForm();
+        closeActiveModal();
+      });
     }
     handleSubmit(makeRequest);
   };

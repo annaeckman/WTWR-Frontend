@@ -7,9 +7,8 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
     useFormAndValidation();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleEditProfile(data);
+  const handleSubmit = () => {
+    handleEditProfile(values, resetCurrentForm);
   };
 
   const resetCurrentForm = () => {
@@ -20,7 +19,7 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
     <ModalWithForm
       title="change profile data"
       buttonText={isLoading ? "Updating" : "Save changes"}
-      altButtonText={"or Log in"}
+      altButtonText={""}
       altButtonClick={() => setActiveModal("edit-profile")}
       isOpen={isOpen}
       onSubmit={handleSubmit}
