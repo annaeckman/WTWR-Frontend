@@ -2,10 +2,14 @@ import { useState } from "react";
 import "../ModalWithForm/ModalWithForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../utils/UseFormAndValidation";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
     useFormAndValidation();
+
+  const currentUser = useContext(CurrentUserContext);
 
   const handleSubmit = () => {
     handleEditProfile(values, resetCurrentForm);
@@ -14,6 +18,8 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
   const resetCurrentForm = () => {
     resetForm({ username: "", avatarUrl: "" });
   };
+
+  console.log(currentUser);
 
   return (
     <ModalWithForm
@@ -37,6 +43,7 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
         value={values.name || ""}
         onChange={handleChange}
         required
+        placeholder={currentUser.name || ""}
       />
       <label className="modal__label" htmlFor="avatar-edit-profile">
         Avatar *
@@ -49,6 +56,7 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
         value={values.avatar || ""}
         onChange={handleChange}
         required
+        placeholder={currentUser.avatar || ""}
       />
     </ModalWithForm>
   );
