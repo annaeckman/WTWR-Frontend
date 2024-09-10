@@ -304,6 +304,7 @@ function App() {
               onClose={closeActiveModal}
               handleRegistration={handleRegistration}
               isLoading={isLoading}
+              setActiveModal={setActiveModal}
             />
 
             <LoginModal
@@ -311,6 +312,7 @@ function App() {
               onClose={closeActiveModal}
               handleLogin={handleLogin}
               isLoading={isLoading}
+              setActiveModal={setActiveModal}
             />
 
             <EditProfileModal

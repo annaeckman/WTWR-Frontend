@@ -4,7 +4,13 @@ import "./LoginModal.css";
 import { useFormAndValidation } from "../../utils/UseFormAndValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ handleLogin, isOpen, onClose, isLoading }) => {
+const LoginModal = ({
+  handleLogin,
+  isOpen,
+  onClose,
+  isLoading,
+  setActiveModal,
+}) => {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
     useFormAndValidation();
 
@@ -18,7 +24,7 @@ const LoginModal = ({ handleLogin, isOpen, onClose, isLoading }) => {
 
   return (
     <ModalWithForm
-      title="login"
+      title="Login"
       buttonText={isLoading ? "Logging in" : "Login"}
       altButtonText={"or Register"}
       altButtonClick={() => setActiveModal("register")}

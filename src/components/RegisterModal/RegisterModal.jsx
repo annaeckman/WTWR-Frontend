@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import { useFormAndValidation } from "../../utils/UseFormAndValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ handleRegistration, isOpen, onClose, isLoading }) {
+function RegisterModal({
+  handleRegistration,
+  isOpen,
+  onClose,
+  isLoading,
+  setActiveModal,
+}) {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
     useFormAndValidation();
 
@@ -18,7 +24,7 @@ function RegisterModal({ handleRegistration, isOpen, onClose, isLoading }) {
 
   return (
     <ModalWithForm
-      title="register"
+      title="Sign up"
       buttonText={isLoading ? "Registering" : "Next"}
       altButtonText={"or Log in"}
       altButtonClick={() => setActiveModal("login")}
