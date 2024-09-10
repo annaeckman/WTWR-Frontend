@@ -19,8 +19,6 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
     resetForm({ username: "", avatarUrl: "" });
   };
 
-  console.log(currentUser);
-
   return (
     <ModalWithForm
       title="change profile data"
@@ -43,7 +41,7 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
         value={values.name || ""}
         onChange={handleChange}
         required
-        placeholder={currentUser.name || ""}
+        placeholder={currentUser?.name || ""}
       />
       <label className="modal__label" htmlFor="avatar-edit-profile">
         Avatar *
@@ -56,7 +54,7 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
         value={values.avatar || ""}
         onChange={handleChange}
         required
-        placeholder={currentUser.avatar || ""}
+        placeholder={currentUser?.avatar || ""}
       />
     </ModalWithForm>
   );
