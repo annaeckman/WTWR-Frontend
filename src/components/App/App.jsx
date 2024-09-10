@@ -169,7 +169,7 @@ function App() {
       return;
     }
 
-    signinUser({ email, password })
+    signinUser(values)
       .then((res) => {
         setToken(res.token);
         return getUserByToken(res.token);
@@ -179,7 +179,7 @@ function App() {
         setIsLoggedIn(true);
         closeActiveModal();
         navigate(protectedDestination || "/");
-        // add a fn to reset the login form
+        resetLoginForm();
       })
       .catch((err) => {
         console.error("Login failed", err);
@@ -314,10 +314,12 @@ function App() {
             />
 
             <EditProfileModal
-              activeModal={activeModal}
+              isOpen={activeModal === "edit-profile"}
               onClose={closeActiveModal}
               handleEditProfile={handleEditProfile}
+              isLoading={isLoading}
             />
+
             <DeleteConfirmModal
               activeModal={activeModal}
               onClose={closeActiveModal}
