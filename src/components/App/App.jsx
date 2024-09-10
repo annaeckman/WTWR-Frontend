@@ -59,15 +59,18 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  const onAddItem = (values, onDone) => {
+  const onAddItem = (newItem, resetCurrentForm) => {
+    setIsLoading(true);
     const token = getToken();
+
     const makeRequest = () => {
-      return addItem(values, token).then((res) => {
-        setClothingItems([res.data, ...clothingItems]);
+      return addItem(newItem, token).then((res) => {
+        setClothingItems([...clothingItems, res.data]);
+        resetCurrentForm();
+        closeActiveModal();
       });
     };
     handleSubmit(makeRequest);
-    onDone();
   };
 
   const handleDeleteItem = () => {
@@ -287,9 +290,10 @@ function App() {
 
             <Footer />
             <AddItemModal
-              handleCloseModal={closeActiveModal}
               isOpen={activeModal === "add-garment"}
               onAddItem={onAddItem}
+              onClose={closeActiveModal}
+              isLoading={isLoading}
             />
 
             <ItemModal

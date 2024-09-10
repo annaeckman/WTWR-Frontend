@@ -1,48 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../utils/UseFormAndValidation";
 
-const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
+const AddItemModal = ({ onAddItem, isOpen, isLoading, onClose }) => {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
     useFormAndValidation();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onAddItem(values, () => {
-      setValues({ name: "", imageUrl: "", weather: "" });
-    });
+  const resetCurrentForm = () => {
+    resetForm({ name: "", imageUrl: "", weather: "" });
   };
+
+  useEffect(() => setValues({ weather: "hot" }), [setValues]);
 
   return (
     <ModalWithForm
       title="new garment"
-      buttonText="Add garment"
+      buttonText={isLoading ? "Saving..." : "Add garment"}
       isOpen={isOpen}
-      onClose={handleCloseModal}
-      onSubmit={handleSubmit}
+      onClose={onClose}
+      onSubmit={() => {
+        const newItem = {
+          _id: null,
+          name: values.name,
+          weather: values.weather,
+          imageUrl: values.imageUrl,
+        };
+        onAddItem(newItem, resetCurrentForm);
+      }}
+      formValid={isValid}
     >
-      <label htmlFor="name-item" className="modal__label">
+      <label htmlFor="name-AddItem" className="modal__label">
         Name{" "}
         <input
           placeholder="Name"
-          name="name-item"
-          value={values.name}
+          name="name"
+          value={values.name || ""}
           onChange={handleChange}
-          id="name"
+          id="name-AddItem"
           type="text"
           className="modal__input"
           minLength="1"
           maxLength="30"
         />
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
+      <label htmlFor="imageUrl-AddItem" className="modal__label">
         Image{" "}
         <input
           placeholder="Image Url"
-          value={values.imageUrl}
+          value={values.imageUrl || ""}
           name="imageUrl"
           onChange={handleChange}
-          id="imageUrl"
+          id="imageUrl-AddItem"
           type="url"
           className="modal__input"
           minLength="1"
