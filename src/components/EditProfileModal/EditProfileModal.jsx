@@ -12,7 +12,7 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
   const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
-    setValues({ name: currentUser.name, avatar: currentUser.avatar });
+    setValues({ name: currentUser?.name, avatar: currentUser?.avatar });
   }, [isOpen, setValues, currentUser]);
 
   const handleSubmit = () => {
