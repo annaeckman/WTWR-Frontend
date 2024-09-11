@@ -67,7 +67,6 @@ function App() {
       return addItem(newItem, token).then((res) => {
         setClothingItems([res.data, ...clothingItems]);
         resetCurrentForm();
-        closeActiveModal();
       });
     };
     handleSubmit(makeRequest);
@@ -167,7 +166,6 @@ function App() {
         console.log(userData);
         setCurrentUser(userData);
         resetCurrentForm();
-        closeActiveModal();
       });
     }
     handleSubmit(makeRequest);

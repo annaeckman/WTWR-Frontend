@@ -19,7 +19,7 @@ function RegisterModal({
   };
 
   const resetCurrentForm = () => {
-    resetForm({ email: "", password: "", username: "", avatarUrl: "" });
+    resetForm({ email: "", password: "", name: "", avatar: "" });
   };
 
   return (
