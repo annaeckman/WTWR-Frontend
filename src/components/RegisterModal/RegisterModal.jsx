@@ -41,7 +41,7 @@ function RegisterModal({
         id="email-register"
         name="email"
         type="email"
-        value={values.email}
+        value={values.email || ""}
         onChange={handleChange}
         required
       />

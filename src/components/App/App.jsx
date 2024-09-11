@@ -65,7 +65,7 @@ function App() {
 
     const makeRequest = () => {
       return addItem(newItem, token).then((res) => {
-        setClothingItems([...clothingItems, res.data]);
+        setClothingItems([res.data, ...clothingItems]);
         resetCurrentForm();
         closeActiveModal();
       });

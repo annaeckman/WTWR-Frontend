@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../ModalWithForm/ModalWithForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../utils/UseFormAndValidation";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
@@ -10,6 +10,10 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
     useFormAndValidation();
 
   const currentUser = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    setValues({ name: currentUser.name, avatar: currentUser.avatar });
+  }, [isOpen, setValues, currentUser]);
 
   const handleSubmit = () => {
     handleEditProfile(values, resetCurrentForm);
@@ -36,13 +40,22 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
       <input
         className="modal__input"
         id="name-edit-profile"
+        minLength="4"
+        maxLength="33"
         name="name"
         type="text"
         value={values.name || ""}
         onChange={handleChange}
         required
-        placeholder={currentUser?.name || ""}
       />
+      <span
+        className={`modal__input-error ${
+          errors.name ? "modal__input-error_visible" : ""
+        }`}
+        id="name-error"
+      >
+        {errors.name}
+      </span>
       <label className="modal__label" htmlFor="avatar-edit-profile">
         Avatar *
       </label>
@@ -54,8 +67,15 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
         value={values.avatar || ""}
         onChange={handleChange}
         required
-        placeholder={currentUser?.avatar || ""}
       />
+      <span
+        className={`modal__input-error ${
+          errors.avatar ? "modal__input-error_visible" : ""
+        }`}
+        id="avatarUrl-error"
+      >
+        {errors.avatar}
+      </span>
     </ModalWithForm>
   );
 }

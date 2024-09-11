@@ -140,3 +140,12 @@
   opacity: 60%;
   cursor: pointer;
 }
+
+.modal__input-error {
+  color: red;
+  display: none;
+}
+
+.modal__input-error_visible {
+  display: block;
+}
