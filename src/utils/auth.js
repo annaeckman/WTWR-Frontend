@@ -1,6 +1,8 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://wtwrwtwr.jumpingcrab.com"
+    : "http://localhost:3001";
 import { processServerResponse } from "./utils";
-import { getToken } from "./token";
 
 function registerUser({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {

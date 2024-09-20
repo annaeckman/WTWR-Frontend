@@ -1,6 +1,9 @@
 import { processServerResponse } from "../utils/utils";
 import { getToken } from "../utils/token";
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://wtwrwtwr.jumpingcrab.com"
+    : "http://localhost:3001";
 
 function getItems() {
   return fetch(`${baseUrl}/items`).then(processServerResponse);
