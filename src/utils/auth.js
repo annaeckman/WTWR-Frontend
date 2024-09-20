@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://wtwrwtwr.jumpingcrab.com"
+    ? "https://api.wtwrwtwr.jumpingcrab.com"
     : "http://localhost:3001";
 import { processServerResponse } from "./utils";
 

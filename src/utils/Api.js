@@ -2,7 +2,7 @@ import { processServerResponse } from "../utils/utils";
 import { getToken } from "../utils/token";
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://wtwrwtwr.jumpingcrab.com"
+    ? "https://api.wtwrwtwr.jumpingcrab.com"
     : "http://localhost:3001";
 
 function getItems() {
