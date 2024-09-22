@@ -1,11 +1,16 @@
-import { useState } from "react";
 import "../ModalWithForm/ModalWithForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../utils/UseFormAndValidation";
 import { useContext, useEffect } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
+function EditProfileModal({
+  handleEditProfile,
+  isOpen,
+  isLoading,
+  onClose,
+  setActiveModal,
+}) {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
     useFormAndValidation();
 
@@ -28,7 +33,7 @@ function EditProfileModal({ handleEditProfile, isOpen, isLoading, onClose }) {
       title="change profile data"
       buttonText={isLoading ? "Updating" : "Save changes"}
       altButtonText={""}
-      altButtonClick={() => setActiveModal("edit-profile")}
+      altButtonClick={() => setActiveModal("register")}
       isOpen={isOpen}
       onSubmit={handleSubmit}
       formValid={isValid}

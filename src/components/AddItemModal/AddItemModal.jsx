@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../utils/UseFormAndValidation";
 
 const AddItemModal = ({ onAddItem, isOpen, isLoading, onClose }) => {
-  const { values, handleChange, errors, isValid, setValues, resetForm } =
+  const { values, handleChange, isValid, setValues, resetForm } =
     useFormAndValidation();
 
   const resetCurrentForm = () => {

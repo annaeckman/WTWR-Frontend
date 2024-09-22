@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import { useState, useCallback } from "react";
 import "./LoginModal.css";
 import { useFormAndValidation } from "../../utils/UseFormAndValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
@@ -11,10 +9,9 @@ const LoginModal = ({
   isLoading,
   setActiveModal,
 }) => {
-  const { values, handleChange, errors, isValid, setValues, resetForm } =
-    useFormAndValidation();
+  const { values, handleChange, isValid, resetForm } = useFormAndValidation();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     handleLogin(values, resetCurrentForm);
   };
 

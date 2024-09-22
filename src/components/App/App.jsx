@@ -328,6 +328,7 @@ function App() {
               onClose={closeActiveModal}
               handleEditProfile={handleEditProfile}
               isLoading={isLoading}
+              setActiveModal={setActiveModal}
             />
 
             <DeleteConfirmModal

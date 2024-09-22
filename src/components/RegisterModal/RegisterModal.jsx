@@ -1,6 +1,5 @@
-import { useState, useCallback } from "react";
 import "./RegisterModal.css";
-import { Link } from "react-router-dom";
+
 import { useFormAndValidation } from "../../utils/UseFormAndValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -11,10 +10,9 @@ function RegisterModal({
   isLoading,
   setActiveModal,
 }) {
-  const { values, handleChange, errors, isValid, setValues, resetForm } =
-    useFormAndValidation();
+  const { values, handleChange, isValid, resetForm } = useFormAndValidation();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     handleRegistration(values, resetCurrentForm);
   };
 
