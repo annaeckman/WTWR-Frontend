@@ -63,6 +63,14 @@ const AddItemModal = ({ onAddItem, isOpen, isLoading, onClose }) => {
           className="modal__input"
           minLength="1"
         />
+        <span
+          className={`modal__input-error ${
+            errors.imageUrl ? "modal__input-error_visible" : ""
+          }`}
+          id="avatarUrl-error"
+        >
+          {errors.imageUrl}
+        </span>
       </label>
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
