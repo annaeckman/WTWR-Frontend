@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormAndValidation } from "../../utils/UseFormAndValidation";
 
 const AddItemModal = ({ onAddItem, isOpen, isLoading, onClose }) => {
-  const { values, handleChange, isValid, setValues, resetForm } =
+  const { values, handleChange, isValid, errors, setValues, resetForm } =
     useFormAndValidation();
 
   const resetCurrentForm = () => {
@@ -39,9 +39,17 @@ const AddItemModal = ({ onAddItem, isOpen, isLoading, onClose }) => {
           id="name-AddItem"
           type="text"
           className="modal__input"
-          minLength="1"
+          minLength="2"
           maxLength="30"
         />
+        <span
+          className={`modal__input-error ${
+            errors.name ? "modal__input-error_visible" : ""
+          }`}
+          id="name-error"
+        >
+          {errors.name}
+        </span>
       </label>
       <label htmlFor="imageUrl-AddItem" className="modal__label">
         Image{" "}

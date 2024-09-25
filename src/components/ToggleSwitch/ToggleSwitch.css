@@ -28,7 +28,7 @@
 }
 
 .switch__slider-F {
-  left: 18px;
+  left: 19px;
 }
 
 .switch__active {
@@ -39,7 +39,7 @@
 
 .switch__temp-F {
   position: absolute;
-  top: -4px;
+  top: -2px;
   left: 31px;
   font-size: 14px;
   line-height: 17.36px;
@@ -48,7 +48,7 @@
 
 .switch__temp-C {
   position: absolute;
-  top: -4px;
+  top: -2px;
   left: 9px;
   font-size: 14px;
   line-height: 17.36px;
