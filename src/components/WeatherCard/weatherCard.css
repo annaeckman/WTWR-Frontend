@@ -25,3 +25,9 @@
   object-position: right top;
   width: 100%;
 }
+
+@media screen and (max-width: 600px) {
+  .weather-card {
+    display: none;
+  }
+}

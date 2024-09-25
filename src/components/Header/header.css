@@ -99,9 +99,45 @@
   text-decoration: none;
 }
 
-@media screen and (min-width: 330px) and (max-width: 530px) {
+@media screen and (max-width: 600px) {
   .header {
     flex-direction: column;
-    gap: 20px;
+    padding: 0 0 28px;
   }
+
+  .header__logo {
+    margin-right: 12px;
+  }
+
+  .header__logo-and-date {
+    padding: 20px 0;
+    border-bottom: 2px solid;
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .header__date-and-location {
+    font-size: 16px;
+  }
+
+  .header__temp-and-user {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  .header__user-name {
+    font-size: 16px;
+  }
+
+  /* 
+  .switch {
+    display: none;
+  }
+
+  .switch__slider {
+    display: none;
+  }
+
+  .switch__box {
+    display: none;
+  } */
 }
