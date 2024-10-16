@@ -51,7 +51,6 @@ function App() {
   const navigate = useNavigate();
 
   const handleSubmit = (request) => {
-    // start loading
     setIsLoading(true);
     request()
       .then(closeActiveModal)

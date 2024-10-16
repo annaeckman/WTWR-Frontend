@@ -39,7 +39,7 @@
 
 .switch__temp-F {
   position: absolute;
-  top: -2px;
+  top: -6px;
   left: 31px;
   font-size: 14px;
   line-height: 17.36px;
@@ -48,7 +48,7 @@
 
 .switch__temp-C {
   position: absolute;
-  top: -2px;
+  top: -6px;
   left: 9px;
   font-size: 14px;
   line-height: 17.36px;

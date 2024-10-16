@@ -1,6 +1,5 @@
 import "../Header/header.css";
 import logo from "../../images/logo.svg";
-// import { currentUser } from "../../contexts/CurrentUserContext";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
